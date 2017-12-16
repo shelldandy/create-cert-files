@@ -42,7 +42,6 @@ const createCert = options => {
   return {
     key: keyPath,
     cert: certPath
-
   }
 }
 

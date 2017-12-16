@@ -1,6 +1,6 @@
 {
   "name": "create-cert-files",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create self signed cert files to be used with webpack-dev-server or browsersync",
   "main": "index.js",
   "repository": "mike3run/create-cert-files",

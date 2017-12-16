@@ -1,0 +1,9 @@
+{
+  "name": "create-cert-files",
+  "version": "1.0.0",
+  "description": "Create self signed cert files to be used with webpack-dev-server or browsersync",
+  "main": "index.js",
+  "repository": "git@github.com:mike3run/create-cert-files.git",
+  "author": "Miguel Palau <mpalauzarza@gmail.com>",
+  "license": "MIT"
+}

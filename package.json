@@ -5,5 +5,13 @@
   "main": "index.js",
   "repository": "git@github.com:mike3run/create-cert-files.git",
   "author": "Miguel Palau <mpalauzarza@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "del": "^3.0.0",
+    "selfsigned": "^1.10.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-pixel2html": "^1.0.0"
+  }
 }

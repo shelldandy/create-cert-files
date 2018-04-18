@@ -13,6 +13,7 @@ const createCert = options => {
   const config = Object.assign({}, defaults, options)
   const keyPath = config.keyPath
   const certPath = config.certPath
+  const extraAltNames = config.altNames
 
   let certExists = fs.existsSync(certPath)
   let keyExists = fs.existsSync(keyPath)
@@ -25,7 +26,7 @@ const createCert = options => {
     // cert is more than 30 days old, kill it with fire
     if ((now - certStat.ctime) / certTtl > 30) {
       log('SSL Certificate is more than 30 days old. Removing.')
-      del.sync([certPath, keyPath], { force: true })
+      del.sync([certPath, keyPath], {force: true})
       certExists = false
       keyExists = false
     }
@@ -33,10 +34,15 @@ const createCert = options => {
 
   if (!certExists || !keyExists) {
     log('Generating SSL Certificate')
-    const attrs = [{ name: 'commonName', value: 'localhost' }]
+    const attrs = [{name: 'commonName', value: 'localhost'}]
+    // add extraAltNames
+    if (extraAltNames) {
+      let subjectAltName = selfsignedOptions.extensions[2]
+      subjectAltName.altNames = [].concat(subjectAltName.altNames, extraAltNames)
+    }
     const pems = selfsigned.generate(attrs, selfsignedOptions)
-    fs.writeFileSync(keyPath, pems.private, { encoding: 'utf-8' })
-    fs.writeFileSync(certPath, pems.cert, { encoding: 'utf-8' })
+    fs.writeFileSync(keyPath, pems.private, {encoding: 'utf-8'})
+    fs.writeFileSync(certPath, pems.cert, {encoding: 'utf-8'})
   }
 
   return {

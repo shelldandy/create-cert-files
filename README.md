@@ -40,4 +40,26 @@ module.exports = {
 }
 ```
 
+## options
+### keyPath
+Path of key file
+### certPath
+Path of cert file
+### altNames
+An array of subjectAltName
+```js
+[
+    {
+      // type 2 is DNS
+      type: 2,
+      value: 'localhost'
+    },
+    {
+      // type 7 is IP
+      type: 7,
+      ip: '127.0.0.1'
+    }
+]
+```
+
 * Profit

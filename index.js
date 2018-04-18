@@ -38,7 +38,7 @@ const createCert = options => {
     // add extraAltNames
     if (extraAltNames) {
       let subjectAltName = selfsignedOptions.extensions[2]
-      subjectAltName.altNames = [].connect(subjectAltName.altNames, extraAltNames)
+      subjectAltName.altNames = [].concat(subjectAltName.altNames, extraAltNames)
     }
     const pems = selfsigned.generate(attrs, selfsignedOptions)
     fs.writeFileSync(keyPath, pems.private, {encoding: 'utf-8'})

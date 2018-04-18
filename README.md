@@ -19,4 +19,25 @@ browserSync.init({
 })
 ```
 
+## Usage with webpack
+
+```bash
+npm install --save-dev create-cert-files
+```
+
+In your webpack.config.js
+```js
+const fakeCert = require('create-cert-files')(options)
+const fs = require('fs')
+
+module.exports = {
+  devServer: {
+    https: {
+            key: fs.readFileSync(fakeCert.key),
+            cert: fs.readFileSync(fakeCert.cert)
+           }
+    }
+}
+```
+
 * Profit
